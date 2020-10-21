@@ -19,8 +19,7 @@
 
   ![파이썬_함수입출력](./img/2.png)
   
-  ```javascript
-  def solution(inputs) {
+  ```python
+  def solution(inputs):
       return output
-  }
   ```

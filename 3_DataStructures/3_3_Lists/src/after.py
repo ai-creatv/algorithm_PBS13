@@ -4,34 +4,66 @@ class ArrayList:
     def __init__(self, capacity):
         self.capacity = capacity
         self.length = 0
-        # self.array = array.array(...) # TODO: self.array 생성
+        self.array = array.array('l', [0]*capacity)
     
-    def isEmpty(self):
-        pass
+    def is_empty(self):
+        return self.capacity == 0
 
     def prepend(self, value):
-        pass
+        if self.capacity == self.length:
+            self.capacity *= 2
+            new_array = array.array('l', [0]*self.capacity)
+            for i in range(self.length):
+                new_array[i + 1] = self.array[i]
+            self.array = new_array
+        else:
+            for i in range(self.length - 1, -1, -1):
+                self.array[i + 1] = self.array[i]
+
+        self.array[0] = value
+        self.length += 1
 
     def append(self, value):
-        pass
+        if self.capacity == self.length:
+            self.capacity *= 2
+            new_array = array.array('l', [0]*self.capacity)
+            for i in range(self.length):
+                new_array[i] = self.array[i]
+            self.array = new_array
+        
+        self.array[self.length] = value
+        self.length += 1
 
-    def setHead(self, index):
-        pass
+    def set_head(self, index):
+        self.array = self.array[index:]
+        self.capacity = self.capacity - index
+        self.length = self.length - index
 
     def access(self, index):
-        pass
+        return self.array[index]
 
     def insert(self, index, value):
-        pass
+        if self.capacity == self.length:
+            self.capacity *= 2
+            new_array = array.array('l', [0]*self.capacity)
+            for i in range(index, self.length):
+                new_array[i] = self.array[i]
+            self.array = new_array
+        else:
+            for i in range(self.length - 1, index - 1, -1):
+                self.array[i + 1] = self.array[i]
+
+        self.array[index] = value
+        self.length += 1
 
     def remove(self, index):
-        pass
+        for i in range(index, self.length - 1):
+            self.array[i] = self.array[i + 1]
+        self.length -= 1
 
     def print(self):
-        pass
+        print(self.array.tolist()[:self.length])
         
-
-
 my_list = ArrayList(8)
 my_list.print()
 
@@ -52,5 +84,5 @@ my_list.print()
 my_list.remove(4)
 my_list.print()
 
-my_list.setHead(10)
+my_list.set_head(10)
 my_list.print()

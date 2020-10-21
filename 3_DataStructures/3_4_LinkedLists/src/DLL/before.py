@@ -1,10 +1,14 @@
-import array
+class Node:
+    def __init__(self, value, next, prev):
+        self.value = value
+        self.next = next
+        self.prev = prev
 
-class ArrayList:
-    def __init__(self, capacity):
-        self.capacity = capacity
-        self.length = 0
-        self.array = array.array('l', [0]*capacity)
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+        self.tail = None
     
     def is_empty(self):
         pass
@@ -29,4 +33,3 @@ class ArrayList:
 
     def print(self):
         pass
-        
