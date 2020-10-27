@@ -64,8 +64,12 @@ class DoublyLinkedList:
             return curr.value
 
     def insert(self, index, value):
-        if self.head is None:
+        if self.head is None and index > 0:
             return False
+
+        if index == 0:
+            self.prepend(value)
+            return True
         
         curr = self.head
         for _ in range(index):
@@ -85,6 +89,11 @@ class DoublyLinkedList:
     def remove(self, index):
         if self.head is None:
             return False
+
+        if index == 0:
+            self.head = self.head.next
+            if self.head is not None:
+                self.head.prev = None
         
         curr = self.head
         for _ in range(index):
@@ -96,8 +105,10 @@ class DoublyLinkedList:
             return False
         else:
             curr.prev.next = curr.next
-            if curr == self.tail:
-                self.tail = curr.prev        
+            if curr.next is not None:
+                curr.next.prev = curr.prev
+            else:
+                self.tail = curr.prev
             return True
 
     def print(self):
