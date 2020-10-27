@@ -124,24 +124,24 @@ class DoublyLinkedList:
             print(str(curr.value) + ']')
 
 
-class LinkedQueue(DoublyLinkedList):
+class LinkedQueue:
     def __init__(self):
-        super().__init__()
+        self.list = DoublyLinkedList()
 
     def put(self, value):
-        self.append(value)
+        self.list.append(value)
 
     def get(self):
-        value = self.access(0)
+        value = self.list.access(0)
         if value is not False:
-            self.remove(0)
+            self.list.remove(0)
         return value
     
     def peek(self):
-        return self.access(0)
+        return self.list.access(0)
 
     def print(self):
-        super().print()
+        self.list.print()
 
 queue = LinkedQueue()
 queue.print()

@@ -94,6 +94,7 @@ class DoublyLinkedList:
             self.head = self.head.next
             if self.head is not None:
                 self.head.prev = None
+            return True
         
         curr = self.head
         for _ in range(index):
